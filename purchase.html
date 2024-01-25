@@ -6,9 +6,19 @@
       gtag('js', new Date());
 
       gtag('config', 'G-CK4G7QRK41');
+      gtag('event', 'purchase', {
+        value: 44,
+        currency: 'AUD',
+        items: [{
+          item_id: 'obj1',
+          item_name: 'fake object 1',
+          item_brand: 'algolia',
+          price: 2,
+          quantity: 2,
+        }],
+      });
 </script>
 
 Hello
 
-<a href="/other.html">Other</a>
-<a href="/purchase.html">Purchase</a>
+<a href="/">Home</a>
