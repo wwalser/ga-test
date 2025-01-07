@@ -8,6 +8,51 @@
       gtag('config', 'G-H76BMXK2PH');
 </script>
 
-Other
+Hello, let's send a few other event kinds.
+
+<button data-fn="clickResultItem">Search result item clicked</button>
+<button data-fn="addToCart">Add to Cart</button>
 
 <a href="./">Home</a>
+
+<script>
+  const emittableEvents = {
+    clickResultItem: () => {
+      gtag('event', 'select_item', {
+        item_list_id: "search_results",
+        item_list_name: "Search results",
+        items: [{
+          item_id: 'obj8',
+          item_name: 'neat item to click',
+          index: 5,
+          item_brand: 'algolia',
+          price: 6,
+          quantity: 1,
+        }],
+      });
+      console.log("result item click tracked");
+    },
+    addToCart: () => {
+      gtag('event', 'add_to_cart', {
+        value: 9,
+        currency: 'AUD',
+        items: [{
+          item_id: 'obj1',
+          item_name: 'neat item to buy',
+          item_brand: 'algolia',
+          price: 6,
+          quantity: 1,
+        }],
+      });
+      console.log("add-to-cart tracked");
+    },
+  }
+
+  const buttons = Array.from(document.getElementsByTagName('button'));
+  buttons.forEach(btn => {
+    const dataAttr = btn.attributes['data-fn'];
+    if (dataAttr && dataAttr.value) {
+      btn.addEventListener('click', emittableEvents[dataAttr.value])
+    };
+  });
+</script>
